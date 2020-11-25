@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/signup', function () {
     return view('signup');
 });
@@ -23,4 +24,13 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/search', function () {
+    $search = request('q');
+
+    return view('search', [
+        'q' => $search
+    ]);
+});
+
 Route::resource('pages', PageController::class);
+Route::get('posts/{post}', 'App\Http\Controllers\PostsController@show');
